@@ -568,6 +568,22 @@ test_ ## testnum: \
   TEST_FP_OP_D_INTERNAL( testnum, flags, double result, val1, val2, val3, \
                     inst f3, f0, f1, f2; fmv.x.d a0, f3)
 
+#define TEST_FP_RM_OP_S( testnum, inst, flags, result, val1, rm ) \
+  TEST_FP_OP_S_INTERNAL( testnum, flags, float result, val1, 0.0, 0.0, \
+                    inst f3, f0, rm; fmv.x.s a0, f3)
+
+#define TEST_FP_RM_OP_H( testnum, inst, flags, result, val1, rm ) \
+  TEST_FP_OP_H_INTERNAL( testnum, flags, float16 result, val1, 0.0, 0.0, \
+                    inst f3, f0, rm; fmv.x.h a0, f3)
+
+#define TEST_FP_RM_OP_D32( testnum, inst, flags, result, val1, rm ) \
+  TEST_FP_OP_D32_INTERNAL( testnum, flags, double result, val1, 0.0, 0.0, \
+                    inst f3, f0, rm; fsd f3, 0(a0); lw t2, 4(a0); lw a0, 0(a0))
+
+#define TEST_FP_RM_OP_D( testnum, inst, flags, result, val1, rm ) \
+  TEST_FP_OP_D_INTERNAL( testnum, flags, double result, val1, 0.0, 0.0, \
+                    inst f3, f0, rm; fmv.x.d a0, f3)
+
 #define TEST_FP_INT_OP_S( testnum, inst, flags, result, val1, rm ) \
   TEST_FP_OP_S_INTERNAL( testnum, flags, word result, val1, 0.0, 0.0, \
                     inst a0, f0, rm)
